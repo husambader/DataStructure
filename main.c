@@ -64,7 +64,7 @@ int main()
 
 
     FILE *in ;
-    char* data_from_file; /** store the data from the file in this string **/
+
 //open file
    // in = fopen("data.txt","r");
 
@@ -93,20 +93,29 @@ int main()
     **/
     in = fopen("data.txt","r");
     char data[100]; /** the string where the data will be fitched;**/
+    const char* data_from_file[2];
     char* polys;
     char* poly;
     /**
      get the data, and store it in this string
     **/
+    int i=0;
     while(fgets(data, 100, in)){
         polys = strtok(data, ",");
+       // data_from_file[i] = (char*)strtok(data, ",");
+        //strcpy(data_from_file, polys);
         printf("%s\n", polys);
+        data_from_file[i] = polys;
+        i++;
+
     }
 
     /**
     close the file
     **/
     fclose(in);
+printf("%s\n", data_from_file[0]);
+printf("%s\n", data_from_file[1]);
 
     //data_from_file = read_file(in);
            break;
