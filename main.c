@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <conio.h>
+#include <string.h>
 #define nbr_of_ply 2
 
 typedef struct node* ptr;
-//this is struct
+
 struct node {
     int coefficient;
     int power;
@@ -40,6 +41,7 @@ int isInteger (double);
 list doOperation (list, list, int);
 int howToSub();
 int valmenu(void);
+//char* read_file(FILE*);
 
 
 
@@ -61,10 +63,10 @@ int main()
     diff2 -> next = NULL;
 
 
-        FILE *in ;
+    FILE *in ;
+    char* data_from_file; /** store the data from the file in this string **/
 //open file
-    in = fopen("data.txt","r");
-
+   // in = fopen("data.txt","r");
 
 
 
@@ -85,8 +87,29 @@ int main()
         switch (option){
 
         case 1:
-            read_Data(in,l,nbr_of_ply);
-            break;
+           // read_Data(in,l,nbr_of_ply);
+               /**
+    open file
+    **/
+    in = fopen("data.txt","r");
+    char data[100]; /** the string where the data will be fitched;**/
+    char* polys;
+    char* poly;
+    /**
+     get the data, and store it in this string
+    **/
+    while(fgets(data, 100, in)){
+        polys = strtok(data, ",");
+        printf("%s\n", polys);
+    }
+
+    /**
+    close the file
+    **/
+    fclose(in);
+
+    //data_from_file = read_file(in);
+           break;
 int Q;
         case 2:
 
@@ -815,4 +838,28 @@ int isInteger (double num){         // this function will the if the given doubl
     else
         return 0;
 }
+/*
+char* read_file(FILE* file){
 
+    file = fopen("data.txt","r");
+    char data[100];
+    char *polys;
+    char* poly;
+    polys = fgets(data, 100, file);
+    printf("%s", polys);
+    while(fgets(data, 100, file)){
+        polys = strtok(data, ",");
+        printf("%s\n", polys);
+    }
+    while(fgets(data, 100, file)){
+
+        char *poly;
+        poly = strtok(data, ",");
+        printf("%s\n", poly);
+    }
+
+    fclose(file);
+
+    return polys;
+}
+*/
