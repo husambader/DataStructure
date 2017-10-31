@@ -64,6 +64,12 @@ int main()
 
 
     FILE *in ;
+    in = fopen("data.txt","r");
+    char data[100]; /** the string where the data will be fitched**/
+    char data_from_file[2][100];
+    char* polynomial_1; // first poly from the file
+    char* polynomial_2; // second poly from the file
+    int i = 0; // counter
 
 //open file
    // in = fopen("data.txt","r");
@@ -87,38 +93,33 @@ int main()
         switch (option){
 
         case 1:
-           // read_Data(in,l,nbr_of_ply);
-               /**
-    open file
-    **/
-    in = fopen("data.txt","r");
-    char data[100]; /** the string where the data will be fitched;**/
-    const char* data_from_file[2];
-    char* polys;
-    char* poly;
-    /**
-     get the data, and store it in this string
-    **/
-    int i=0;
-    while(fgets(data, 100, in)){
-        polys = strtok(data, ",");
-       // data_from_file[i] = (char*)strtok(data, ",");
-        //strcpy(data_from_file, polys);
-        printf("%s\n", polys);
-        data_from_file[i] = polys;
-        i++;
 
+           // read_Data(in,l,nbr_of_ply);
+    /**
+     get the data, and store it in this string(loop through the file an get the two equations line by line
+         and store them in an array of strings -> data_from_file)
+    **/
+    while(fgets(data, 100, in)){
+        strcpy(data_from_file[i], data);
+        i++;
     }
 
     /**
     close the file
     **/
     fclose(in);
-printf("%s\n", data_from_file[0]);
-printf("%s\n", data_from_file[1]);
+
+    polynomial_1 = data_from_file[0];
+    polynomial_2 = data_from_file[1];
+
+     /** thoes two statements just to test that the two polys are fitched and stored. **/
+   //printf("%s\n", polynomial_1);//
+  //  printf("%s\n", polynomial_2);
 
     //data_from_file = read_file(in);
+
            break;
+
 int Q;
         case 2:
 
